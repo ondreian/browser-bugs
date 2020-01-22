@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <video src="https://edge.flowplayer.org/functional.mp4" 
+         crossorigin="anonymous" 
+         id="player" 
+         playsinline
+         controls>
+    
+  </video>
+  <div id="state">not loaded</div>
+  <div id="tally">not fired</div>
+  <script>
+    
+    const track = document.createElement("track")
+    track.id = "pt"
+    track.kind = "metadata"
+    track.src = "https://builds.flowplayer.com/samples/pt.vtt"
+    track.lang = "pt-BR"
+    track.label = "Portuguese"
+    track.crossOrigin = "anonymous"
+    // fetch it
+    track.track.mode = "hidden"
+    
+    player.appendChild(track)
+    
+    pt.addEventListener("load", ()=> {
+      state.innerText = "loaded"
+    })
+    // this event never fires in Firefox
+    pt.addEventListener("cuechange", ({track})=> {
+      tally.innerText = pt.track.activeCues.length
+    })
+    
+  </script>
+</body>
+</html>
